@@ -7,6 +7,48 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<form action="http://localhost:3000/api/v1/video" method="post" enctype="multipart/form-data">
+  <p><input type="text" name="text1" value="text default">
+  <p><input type="text" name="text2" value="a&#x03C9;b">
+  <p><input type="file" name="file1">
+  <p><input type="file" name="file2">
+  <p><input type="file" name="file3">
+  <p><button type="submit">Submit</button>
+</form>
+<script>
+  $(document).on('ready', function() {
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+
+      var data = new FormData();
+
+      $('input[type=file]').each(function(i, element) {
+        var elementName = $(element).attr('name');
+
+        $.each(element.files, function(j, file) {
+          data.append('files['+elementName+']', file);
+        });
+      });
+
+      data.append("testParam", "test");
+      console.log(data);
+
+      $.ajax({
+        url:"http://localhost:3000/api/v1/video",
+        type:"POST",
+        processData: false,
+        contentType: false,
+        data: data,
+        //contentType:"application/json; charset=utf-8",
+        //dataType:"json",
+        success: function(){
+
+        }
+      })
+    });
+  })
+
+</script>
 
 <%= yield %>
 

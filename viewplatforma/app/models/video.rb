@@ -3,4 +3,6 @@ class Video
   include Mongoid::Timestamps
 
   field :title, type: String
+  field :filename, type: String
+
 end
