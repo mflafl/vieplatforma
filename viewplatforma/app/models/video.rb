@@ -5,4 +5,6 @@ class Video
   field :title, type: String
   field :filename, type: String
 
+  validates_presence_of :title, :filename
+
 end

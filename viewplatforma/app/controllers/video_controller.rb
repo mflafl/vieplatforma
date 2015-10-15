@@ -7,16 +7,22 @@ class VideoController < ActionController::Base
   end
 
   def index
-    #video = Video.new
-    #video.title = "My video"
-    #video.save
-    #test = {:test => "rr"}
-    #render json: test
+
   end
 
   def create
-    #puts request
+    video = Video.new
 
+    if video.valid?
+      video.save
+      render json:video
+    else
+      render json: video.errors, status: :bad_request
+    end
+
+
+    return
+    #puts request
     #puts JSON.parse(request.body.read)
     #puts request.body.read
 
