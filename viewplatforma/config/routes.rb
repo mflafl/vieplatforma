@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope '/app' do
-    get '/' => 'app#index'
+    get '/' => 'application#index'
   end
 
   scope '/api' do
