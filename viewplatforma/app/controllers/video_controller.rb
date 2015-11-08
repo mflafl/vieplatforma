@@ -3,7 +3,8 @@ class VideoController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   def index
-
+    videos = Video.all.entries
+    render json: videos, each_serialize: VideoSerializer
   end
 
   def create
@@ -38,6 +39,7 @@ class VideoController < ActionController::Base
         item.save
       end
 
+      render json: videos, each_serialize: VideoSerializer
     end
   end
 end
